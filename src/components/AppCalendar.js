@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment'
 import { Text, View, StyleSheet } from 'react-native';
-import { Agenda } from 'react-native-calendars';
+import { Calendar, Agenda } from 'react-native-calendars';
 import Item from './ui/Item'
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux'
@@ -54,8 +54,16 @@ class AppCalendar extends Component {
                 renderItem={this.renderItem}
                 // renderDay={this.renderDay}
                 rowHasChanged={this.rowHasChanged}
+                theme={{
+                    selectedDayBackgroundColor: '#914A8A',
+                    selectedDayTextColor: '#ffffff',
+                    agendaKnobColor: '#914A8A',
+                    dotColor: '#78136E',
+                    todayTextColor: '#914A8A',
+                    agendaTodayColor: '#914A8A',
+                }}
             />
-        <AddButton/>
+            <AddButton/>
         </View>
     )};
 
@@ -123,7 +131,7 @@ const styles = StyleSheet.create({
         fontSize: 13,
     },
     emptyDate: {
-        marginTop: 45,
+        marginTop: 50,
         marginRight: 10,
         borderTopWidth: 2,
         borderTopColor: '#dddddd',

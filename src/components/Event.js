@@ -95,7 +95,7 @@ class Event extends Component {
                             style={styles.image}
                             resizeMethod={'resize'} />
                     </TouchableOpacity>
-                    <View style={{height: 5, backgroundColor: '#d13aff', width: '100%', marginBottom: 10}} />
+                    <View style={{height: 5, backgroundColor: '#78136E', width: '100%', marginBottom: 10}} />
                     <View style={styles.contentContainer}>
                         <DeleteButton style={{top: -32, right: 10}} onPress={this.pressDelete}/>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -104,18 +104,29 @@ class Event extends Component {
                                 <Text style={{fontSize: 14}}>{weekdays[moment(item.time).day()]}</Text>
                                 <Text style={{fontSize: 14}}>{moment(item.time).format('MMMM YYYY').toUpperCase()}</Text>
                             </View>
-                            <View style={{marginLeft: 'auto', marginRight: 85}}>
+                            {/* <View style={{marginLeft: 'auto', marginRight: 85}}>
                                 <Text style={{fontSize: 16, fontWeight: 'bold', position: 'absolute', bottom: -3}}>{moment(item.time).format('hh')}</Text>
                                 <Text style={{fontSize: 16, fontWeight: 'bold', position: 'absolute', top: -1}}>{moment(item.time).format('mm')}</Text>
-                            </View>
-                            <Text style={{fontSize: 40, position: 'absolute', right: 0}}>{moment(item.time).format('a').toUpperCase()}</Text>
+                            </View> */}
+                            <Text style={{fontSize: 16, fontWeight: 'bold', position: 'absolute', marginTop: 25, right: 0}}>{moment(item.time).format('hh:mm a').toUpperCase()}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                             <Icon name='map-marker-alt' style={{ marginRight: 4, marginLeft: 2, marginTop: 4 }} />
                             <Text style={styles.text}>{item.address}</Text>
                         </View>
-                        <Text style={styles.title}>{item.title}</Text>
-                        <View style={{paddingBottom: 10}}>
+                        <MapView
+                            style={styles.map}
+                            scrollEnabled={false}
+                            ref={(ref) => { this.mapRef = ref }}
+                            region={{
+                                latitude: item.coordinate ? item.coordinate.latitude : 16,
+                                longitude: item.coordinate ? item.coordinate.longitude : 105,
+                                latitudeDelta: item.coordinate ? 1 : 10,
+                                longitudeDelta: item.coordinate ? 1 : 10,
+                            }} >
+                            {item.coordinate != null && [item.coordinate].map(coords=>(<MapView.Marker coordinate={coords} />))}
+                        </MapView>
+                        <View style={{alignSelf: 'center', marginVertical: 10}}>
                             <Rating
                                 rating={item.emotion}
                                 fullStar={
@@ -128,19 +139,9 @@ class Event extends Component {
                                 viewOnly={true}
                             />
                         </View>
+                        <Text style={styles.title}>{item.title}</Text>
                         <Text style={styles.text}>{item.text}</Text>
-                        <MapView
-                                style={styles.map}
-                                scrollEnabled={false}
-                                ref={(ref) => { this.mapRef = ref }}
-                                region={{
-                                    latitude: item.coordinate ? item.coordinate.latitude : 16,
-                                    longitude: item.coordinate ? item.coordinate.longitude : 105,
-                                    latitudeDelta: item.coordinate ? 1 : 10,
-                                    longitudeDelta: item.coordinate ? 1 : 10,
-                                }} >
-                                {item.coordinate != null && [item.coordinate].map(coords=>(<MapView.Marker coordinate={coords} />))}
-                            </MapView>
+                        
                     </View>
                 </ScrollView>
             </View>
@@ -174,24 +175,24 @@ const styles = StyleSheet.create({
     },
     map: {
         width: Dimensions.get('window').width - 30,
-        height: 150, 
-        marginVertical: 10,
-        elevation: 10
+        height: 100, 
+        elevation: 10,
+        marginTop: 15,
     },
     contentContainer: {
         marginHorizontal: 15
     },
     title: {
-        fontSize: 17,
+        fontSize: 22,
         fontWeight: 'bold',
-        color: '#15d1ef',
+        color: '#78136E',
         marginTop: 10,
         marginBottom: 5
     },
     text: {
-        fontSize: 13,
+        fontSize: 15,
         textAlign: 'justify'
-    }
+    },
 })
 
 export default Event;

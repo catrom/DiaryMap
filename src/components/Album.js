@@ -35,7 +35,7 @@ class Album extends Component {
                     extraData={this.state.refresh}
                     keyExtractor={(item, index) => item.itemid }
                     renderItem={this.renderItem}
-                    numColumns={2}
+                    numColumns={3}
                 />
                 <AddButton/>
             </View>
@@ -56,9 +56,11 @@ class Album extends Component {
 
 const styles = StyleSheet.create({
     imageItem: {
-        width: Dimensions.get('window').width/2, 
-        height: Dimensions.get('window').width/2,
-        resizeMode: 'cover'
+        width: Dimensions.get('window').width/3 - 6, 
+        height: Dimensions.get('window').width/3 - 6,
+        resizeMode: 'cover',
+        marginLeft: 2,
+        marginTop: 2
     }
 })
 

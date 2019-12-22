@@ -12,7 +12,7 @@ export default class AddButton extends Component {
     render() {
         return (
             <TouchableOpacity style={styles.container} onPress={this.onPress}>
-                <Icon name='plus' size={25} color='#26d6f2'  />
+                <Icon name='plus' size={25} color='#78136E'  />
             </TouchableOpacity>
         );
     }

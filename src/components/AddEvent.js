@@ -144,11 +144,11 @@ class AddEvent extends Component {
                             style={{ width: 300, height: 200, resizeMode: 'contain', alignSelf: 'center', borderRadius: 10 }}
                             onPress={this.openImagePicker} />
                         <TouchableOpacity
-                            style={styles.buttonContainer}
+                            style={styles.buttonChoosePhotoContainer}
                             onPress={this.openImagePicker}
                             disabled={this.props.disabled}
                         >
-                            <Text style={styles.buttonText}>Choose a photo</Text>
+                            <Text style={styles.choosePhotoText}>Choose a photo</Text>
                         </TouchableOpacity>
                     </CustomCard>
                     <CustomCard title={'POSITION'} >
@@ -296,7 +296,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 40,
         margin: 5,
-        backgroundColor: '#26d6f2',
+        backgroundColor: '#8C007E',
+    },
+    buttonChoosePhotoContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40,
+        margin: 5,
+        backgroundColor: 'white',
+    },
+    choosePhotoText: {
+        fontSize: 17,
+        color: '#78136E',
+        textDecorationLine: 'underline',
+        textDecorationStyle: 'solid',
+        textDecorationColor: '#78136E'
     },
     buttonText: {
         fontSize: 17,

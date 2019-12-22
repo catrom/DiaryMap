@@ -41,14 +41,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         borderLeftWidth: 5,
         borderRadius: 3,
-        borderColor: '#f4a55d',
+        borderColor: '#510B4A',
         flexDirection: 'row',
         alignItems: 'center',
     },
     title: {
         fontSize: 17,
         fontWeight: 'bold',
-        color: '#15d1ef'
+        color: '#78136E'
     },
     text: {
         fontSize: 13,
