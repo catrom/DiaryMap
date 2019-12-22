@@ -129,12 +129,12 @@ class Login extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../assets/letter.png')} style={styles.container}>
+            <ImageBackground source={require('../assets/background.png')} style={styles.container}>
                 <Toast ref="toast" 
                     textStyle={{color:'white', fontSize:16}} 
                     style={{backgroundColor:'black', borderRadius:50, opacity:0.8}}
                 />
-                <Image source={require('../assets/logo.png')} style={{height: 160, resizeMode: 'center', alignSelf: 'center'}} />
+                <Image source={require('../assets/logo2.png')} style={{height: 130, resizeMode: 'stretch', alignSelf: 'center', marginVertical: 30}} />
                 <View style={styles.inputContainer}>
                     <Icon style={{ color: 'white', marginHorizontal: 8 }} name={'user-circle'} size={25} />
                     <TextInput 
@@ -195,13 +195,13 @@ const styles = StyleSheet.create({
     buttonContainer: {
         borderColor: 'white',
         borderRadius: 50,
-        //borderWidth: 2,
+        borderWidth: 2,
         padding: 3,
         alignItems: 'center',
         justifyContent: 'center',
         height: 50,
         margin: 5,
-        backgroundColor: '#26d6f2',
+        backgroundColor: '#8C007E',
     },
     buttonText: {
         fontSize: 20,

@@ -18,7 +18,7 @@ const styles = {
         borderColor: '#ddd',
         borderBottomWidth: 0,
         shadowColor: '#000',
-        shadowOffset: {width: 0, height: 10},
+        shadowOffset: {width: 0, height: 5},
         shadowOpacity: 0.1,
         shadowRadius: 2,
         elevation: 3,
@@ -27,7 +27,7 @@ const styles = {
     },
     title: {
         fontWeight: 'bold',
-        color: '#15d1ef'
+        color: '#78136E'
     }
 };
 

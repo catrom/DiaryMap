@@ -24,7 +24,8 @@ const screenWidth = Dimensions.get('window').width
 const chartConfig = {
     backgroundGradientFrom: 'white',
     backgroundGradientTo: 'white',
-    color: ((opacity = 1) => `rgba(2, 174, 209, ${opacity})`)
+    color: ((opacity = 1) => `rgba(169, 119, 164, ${opacity})`),
+    
 }
 
 export default class Statistic extends Component {
@@ -113,8 +114,8 @@ export default class Statistic extends Component {
         const Gradient = ({ index }) => (
             <Defs key={index}>
                 <LinearGradient id={'gradient'} x1={'0%'} y={'0%'} x2={'0%'} y2={'100%'}>
-                    <Stop offset={'0%'} stopColor={'#12c2e9'} stopOpacity={0.7}/>
-                    <Stop offset={'100%'} stopColor={'#f64f59'} stopOpacity={0.7}/>
+                    <Stop offset={'0%'} stopColor={'#6E6E6E'} stopOpacity={0.7}/>
+                    <Stop offset={'100%'} stopColor={'#78136E'} stopOpacity={0.7}/>
                 </LinearGradient>
             </Defs>)
 
@@ -122,7 +123,7 @@ export default class Statistic extends Component {
             labels: this.getListMonth(),
             datasets: [{
                 data: this.getCountData(),
-                color: (opacity = 1) => `rgba(7, 214, 255, ${opacity})` // optional
+                color: (opacity = 1) => `rgba(120, 19, 110, ${opacity})` // optional
             }]
         };
 
@@ -134,17 +135,18 @@ export default class Statistic extends Component {
             <View style={{ paddingTop: 55, flex: 1, height: '100%' }}>
                 <ScrollView>
                     <CustomCard
-                        title={'EVENT COUNTING'}>
+                        title={'Event Counts'}>
                         <LineChart
                             data={countData}
                             width={screenWidth - 30}
                             height={180}
                             chartConfig={chartConfig}
+                            bezier
                         />
                     </CustomCard>
 
                     <CustomCard
-                        title={'EMOTION'}>
+                        title={'Emotions'}>
                         <View style={{flexDirection: 'row'}}>
                             <View style={{flexDirection: 'column', justifyContent: 'space-between', paddingVertical: 10}}>
                                 {emotionImage.reverse().map(uri => (<Image source={uri} style={{width: 18, height: 18}} />))}
@@ -165,7 +167,7 @@ export default class Statistic extends Component {
                             </AreaChart>
                         </View>
                         <View style={{justifyContent: 'space-between', flexDirection: 'row', marginHorizontal: 10, marginLeft: 25}}>
-                            {emotionData.map(item => (<Text style={{color: '#26d6f2'}}>{moment(item.date, 'YYYY-MM').format('MMM')}</Text>))}
+                            {emotionData.map(item => (<Text style={{color: '#A977A4'}}>{moment(item.date, 'YYYY-MM').format('MMM')}</Text>))}
                         </View>
 
                     </CustomCard>

@@ -248,6 +248,7 @@ export default class Profile extends Component {
                             onChangeText={(newPassword) => {this.setState({newPassword: newPassword})}}
                         />
                         <TextInput 
+                            style={styles.textInput}
                             placeholder={'Re-enter new password...'} 
                             secureTextEntry={true}
                             onChangeText={(newRePassword) => {this.setState({newRePassword: newRePassword})}}
@@ -277,13 +278,13 @@ export default class Profile extends Component {
                             <Text style={styles.description}></Text>
 
                             <TouchableOpacity style={styles.buttonContainer} onPress={this.editUsername}>
-                                <Text>Edit Username</Text>
+                                <Text style={styles.textInButton}>Edit Username</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonContainer} onPress={this.changePassword}>
-                                <Text>Change Password</Text>
+                                <Text style={styles.textInButton}>Change Password</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonContainer2} onPress={this.logout}>
-                                <Text>LOG OUT</Text>
+                                <Text style={styles.textInButton2}>LOG OUT</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -295,7 +296,7 @@ export default class Profile extends Component {
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: "#00BFFF",
+        backgroundColor: "#A977A4",
         height: 200,
     },
     avatarContainer: {
@@ -309,9 +310,14 @@ const styles = StyleSheet.create({
         height: 130,
         borderRadius: 63,
         borderWidth: 4,
-        borderColor: "#d13aff",
+        borderColor: "#78136E",
         backgroundColor: 'white',
 
+    },
+    textInput: {
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 2
     },
     name: {
         fontSize: 22,
@@ -333,7 +339,7 @@ const styles = StyleSheet.create({
     },
     info: {
         fontSize: 16,
-        color: "#00BFFF",
+        color: "#78136E",
         marginTop: 10
     },
     description: {
@@ -350,9 +356,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 5,
         width: 250,
-        borderRadius: 30,
-        backgroundColor: "#00BFFF",
-        color: 'white'
+        backgroundColor: "#fff",
+        color: 'white',
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: '#78136E',
     },
     buttonContainer2: {
         marginTop: 10,
@@ -362,8 +370,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
         width: 250,
-        borderRadius: 30,
-        backgroundColor: "#DD4C35",
-        color: 'white'
+        backgroundColor: "#fff",
+        color: 'white',
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: '#B80000',
     },
+    textInButton: {
+        fontSize: 16,
+        color: '#78136E',
+    },
+    textInButton2: {
+        fontSize: 16,
+        color: '#B80000',
+    }
 });

@@ -15,7 +15,7 @@ import Statistic from './Statistic'
 import AppDrawer from './ui/Drawer';
 
 const TabIcon = ({ selected, title, iconName }) => {
-    const color = selected ? '#04c9e8' : '#3f3f3f';
+    const color = selected ? '#510B4A' : '#C4C4C4';
     return (
         <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', alignSelf: 'center', justifyContent: 'center' }}>
             <Icon style={{ color: color }} name={iconName || "circle"} size={25} />
@@ -42,7 +42,7 @@ const AddIcon = () => {
 
 const styles = {
     navigationBarStyle: {
-        backgroundColor: '#26d6f2',
+        backgroundColor: '#78136E',
         justifyContent: 'flex-start'
     },
     titleStyle: {
@@ -59,7 +59,9 @@ const AppRouter = () => {
         <Router
             navigationBarStyle={navigationBarStyle}
             titleStyle={titleStyle} >
-            <Scene key='auth' tabBarStyle={{ backgroundColor: '#FFFFFF', elevation: 25 }} initial type={ActionConst.RESET} lazy>
+            <Scene key='auth' tabBarStyle={{ backgroundColor: '#FFFFFF', elevation: 25 }} initial type={ActionConst.RESET} lazy 
+            backButtonTextStyle = {{color:'#fff'}} 
+            barButtonIconStyle={{ tintColor: '#fff' }} >
                 <Scene
                     key="login"
                     component={Login}
@@ -123,11 +125,15 @@ const AppRouter = () => {
                 key='add'
                 component={AddEvent}
                 title='ADD EVENT'
+                backButtonTextStyle = {{color:'#fff'}} 
+                leftButtonIconStyle ={{ tintColor: '#fff' }}
             />
             <Scene
                 key='event'
                 component={Event}
                 title='MEMORY'
+                backButtonTextStyle = {{color:'#fff'}} 
+                leftButtonIconStyle ={{ tintColor: '#fff' }}
             />
 
         </Router>

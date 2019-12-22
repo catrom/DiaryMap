@@ -49,7 +49,7 @@ export default class Home extends Component {
                     renderItem={({ item }) => {
                         var tSource2 = this.state.dataSource[item];
                         return (
-                            <View style={{ marginTop: 10, marginHorizontal: 7, padding: 7, borderRadius: 8, backgroundColor: '#fff6ed' }}>
+                            <View style={{ marginTop: 10, marginHorizontal: 7, padding: 7, borderRadius: 8, backgroundColor: '#A977A4' }}>
                                 <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{moment(item).format('DD MMMM YYYY').toUpperCase()}</Text>
                                 <FlatList
                                     data={tSource2}

@@ -7,7 +7,7 @@ export default class DeleteButton extends Component {
     render() {
         return (
             <TouchableOpacity style={[styles.container, this.props.style]} onPress={this.props.onPress}>
-                <Icon name='trash-alt' size={18} color='#26d6f2'  />
+                <Icon name='trash-alt' size={18} color='#78136E'  />
             </TouchableOpacity>
         );
     }

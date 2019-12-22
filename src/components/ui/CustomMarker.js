@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         borderWidth: 2,
         borderRadius: 2,
-        borderColor: '#26d6f2'
+        borderColor: '#78136E'
     },
     icon: {
-        color: '#26d6f2',
+        color: '#78136E',
         justifyContent: 'flex-end',
         position: 'absolute',
         marginTop: 25,
