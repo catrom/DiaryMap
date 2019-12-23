@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, Dimensions, ImageBackground } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, Dimensions, ImageBackground, Alert } from 'react-native'
 import firebase from 'firebase'
 import MapView, { Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import moment from 'moment';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import DeleteButton from './ui/DeleteButton';
+import ShareButton from './ui/ShareButton';
 import { ConfirmDialog, ProgressDialog } from 'react-native-simple-dialogs';
 import Rating from 'react-native-rating-simple';
+import Share from 'react-native-share';
 
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thusday', 'Friday', 'Saturday']
 
@@ -18,7 +20,7 @@ class Event extends Component {
         this.state={
             dialogVisible: false,
             progressVisible: false,
-            isImageViewVisible: false
+            isImageViewVisible: false,
         }
     }
 
@@ -48,6 +50,18 @@ class Event extends Component {
 
     pressImage = () => {
         this.setState({isImageViewVisible: true})
+    }
+
+    pressShare = (item) => {
+        return new Promise((resolve, reject) => {
+            Share.open({title: item.title, url: item.imageurl})
+                .then(() => { 
+                    Actions.event({item})
+                    alert('Shared successfully!')
+                })
+                .catch((err) => { err && console.log(err) })
+            }
+        )
     }
 
     pressDelete = () => {
@@ -97,7 +111,8 @@ class Event extends Component {
                     </TouchableOpacity>
                     <View style={{height: 5, backgroundColor: '#78136E', width: '100%', marginBottom: 10}} />
                     <View style={styles.contentContainer}>
-                        <DeleteButton style={{top: -32, right: 10}} onPress={this.pressDelete}/>
+                        <ShareButton style={{ top: -32, right: 45}} onPress={() => this.pressShare(item)}/>
+                        <DeleteButton style={{ top: -32, right: 0}} onPress={this.pressDelete}/>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Text style={{fontSize: 40, marginRight: 10}}>{moment(item.time).format('DD')}</Text>
                             <View style={{flexDirection: 'column', justifyContent: 'flex-end'}}>
@@ -108,7 +123,7 @@ class Event extends Component {
                                 <Text style={{fontSize: 16, fontWeight: 'bold', position: 'absolute', bottom: -3}}>{moment(item.time).format('hh')}</Text>
                                 <Text style={{fontSize: 16, fontWeight: 'bold', position: 'absolute', top: -1}}>{moment(item.time).format('mm')}</Text>
                             </View> */}
-                            <Text style={{fontSize: 16, fontWeight: 'bold', position: 'absolute', marginTop: 25, right: 0}}>{moment(item.time).format('hh:mm a').toUpperCase()}</Text>
+                            <Text style={{fontSize: 16, fontWeight: 'bold', position: 'absolute', paddingTop: 10, right: 0}}>{moment(item.time).format('hh:mm a').toUpperCase()}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                             <Icon name='map-marker-alt' style={{ marginRight: 4, marginLeft: 2, marginTop: 4 }} />
@@ -141,7 +156,6 @@ class Event extends Component {
                         </View>
                         <Text style={styles.title}>{item.title}</Text>
                         <Text style={styles.text}>{item.text}</Text>
-                        
                     </View>
                 </ScrollView>
             </View>
