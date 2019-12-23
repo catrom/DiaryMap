@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, Dimensions, ImageBackground } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, Dimensions, ImageBackground, FlatList } from 'react-native'
 import firebase from 'firebase'
 import MapView, { Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -62,6 +62,21 @@ export default class Statistic extends Component {
             });
         })
         return events;
+    }
+
+    getPlaceData = () => {
+        let places = []
+        firebase.database().ref('event').orderByChild('address').once('value', (dataSnapshot) => {
+            dataSnapshot.forEach((childSnapshot) => {
+                let item = childSnapshot.val();
+                if (item.userid === firebase.auth().currentUser.uid) {
+                    if (!places.includes(item.address)) {
+                        places.push(item.address)
+                    }
+                }
+            });
+        })
+        return places;
     }
 
     getEmotionData = () => {
@@ -129,6 +144,8 @@ export default class Statistic extends Component {
 
         var emotionData = this.getEmotionData();
 
+        var placeData = this.getPlaceData();
+
         const emotionImage = [require('../assets/icons/1.png'), tmp = require('../assets/icons/2.png'), require('../assets/icons/3.png'), require('../assets/icons/4.png'),require('../assets/icons/5.png')]
 
         return (
@@ -169,7 +186,31 @@ export default class Statistic extends Component {
                         <View style={{justifyContent: 'space-between', flexDirection: 'row', marginHorizontal: 10, marginLeft: 25}}>
                             {emotionData.map(item => (<Text style={{color: '#A977A4'}}>{moment(item.date, 'YYYY-MM').format('MMM')}</Text>))}
                         </View>
+                    </CustomCard>
 
+                    <CustomCard
+                        title={'Places'}>
+                        <FlatList
+                            style={{ marginTop: 10}}
+                            data={placeData}
+                            numColumns={1}
+                            renderItem={({ item }) => {
+                                return (
+                                    <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+                                        <Text style={{ 
+                                            color: 'white', 
+                                            backgroundColor: '#A977A4', 
+                                            paddingHorizontal: 10, 
+                                            paddingVertical: 3,
+                                            borderRadius: 50,
+                                            marginBottom: 5
+                                        }}>
+                                            {item}
+                                        </Text>
+                                    </View>
+                                )
+                            }}
+                        />
                     </CustomCard>
                 </ScrollView>
             </View>
