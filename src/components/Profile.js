@@ -226,6 +226,7 @@ export default class Profile extends Component {
                             onPress: () => this.setState({ usrDialogVisible: false })
                         }}>
                         <TextInput 
+                            style={styles.textInput}
                             placeholder={'New username...'} 
                             onChangeText={(newUsername) => {this.setState({newUsername: newUsername})}}    
                         />
@@ -243,6 +244,7 @@ export default class Profile extends Component {
                             onPress: () => this.setState({ passDialogVisible: false })
                         }}>
                         <TextInput 
+                        style={styles.textInput}
                             placeholder={'New password...'} 
                             secureTextEntry={true}
                             onChangeText={(newPassword) => {this.setState({newPassword: newPassword})}}
@@ -317,7 +319,8 @@ const styles = StyleSheet.create({
     textInput: {
         borderWidth: 1,
         borderColor: 'gray',
-        borderRadius: 2
+        borderRadius: 2,
+        marginBottom: 2
     },
     name: {
         fontSize: 22,
