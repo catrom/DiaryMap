@@ -3,11 +3,11 @@ import { Actions } from 'react-native-router-flux';
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default class DeleteButton extends Component {
+export default class ShareButton extends Component {
     render() {
         return (
             <TouchableOpacity style={[styles.container, this.props.style]} onPress={this.props.onPress}>
-                <Icon name='trash' size={18} color='#F50000'  />
+                <Icon name='share' size={18} color='#78136E'  />
             </TouchableOpacity>
         );
     }
@@ -16,6 +16,7 @@ export default class DeleteButton extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
